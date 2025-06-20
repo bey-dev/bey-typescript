@@ -298,13 +298,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['BEY_BASE_URL'] = ''; // empty
       const client = new Bey({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.example.com');
+      expect(client.baseURL).toEqual('https://api.bey.dev/');
     });
 
     test('blank env variable', () => {
       process.env['BEY_BASE_URL'] = '  '; // blank
       const client = new Bey({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.example.com');
+      expect(client.baseURL).toEqual('https://api.bey.dev/');
     });
 
     test('in request options', () => {
