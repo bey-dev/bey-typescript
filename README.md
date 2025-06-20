@@ -4,7 +4,7 @@
 
 This library provides convenient access to the Bey REST API from server-side TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.bey.dev](https://docs.bey.dev/introduction). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -29,7 +29,13 @@ const client = new Bey({
   apiKey: process.env['BEY_API_KEY'], // This is the default and can be omitted
 });
 
-const developerAgentResponses = await client.agent.list();
+const session = await client.session.create({
+  avatar_id: '01234567-89ab-cdef-0123-456789abcdef',
+  livekit_token: '<your-livekit-token>',
+  livekit_url: 'wss://<your-domain>.livekit.cloud',
+});
+
+console.log(session.id);
 ```
 
 ### Request & Response types
@@ -223,7 +229,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.agent.list({
+client.session.create({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
