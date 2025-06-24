@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type Bey } from '../client';
+import { type BeyondPresence } from '../client';
 
 import { type PromiseOrValue } from '../internal/types';
 import { APIResponseProps, defaultParseResponse } from '../internal/parse';
@@ -11,12 +11,15 @@ import { APIResponseProps, defaultParseResponse } from '../internal/parse';
  */
 export class APIPromise<T> extends Promise<T> {
   private parsedPromise: Promise<T> | undefined;
-  #client: Bey;
+  #client: BeyondPresence;
 
   constructor(
-    client: Bey,
+    client: BeyondPresence,
     private responsePromise: Promise<APIResponseProps>,
-    private parseResponse: (client: Bey, props: APIResponseProps) => PromiseOrValue<T> = defaultParseResponse,
+    private parseResponse: (
+      client: BeyondPresence,
+      props: APIResponseProps,
+    ) => PromiseOrValue<T> = defaultParseResponse,
   ) {
     super((resolve) => {
       // this is maybe a bit weird but this has to be a no-op to not implicitly

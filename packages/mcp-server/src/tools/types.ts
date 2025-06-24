@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Bey from '@bey-dev/sdk';
+import BeyondPresence from '@bey-dev/sdk';
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 
 type TextContentBlock = {
@@ -43,7 +43,7 @@ export type ToolCallResult = {
 };
 
 export type HandlerFunction = (
-  client: Bey,
+  client: BeyondPresence,
   args: Record<string, unknown> | undefined,
 ) => Promise<ToolCallResult>;
 
