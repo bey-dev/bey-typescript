@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Bey } from 'bey';
+import { BeyondPresence } from '@bey-dev/sdk';
 
-const { stringifyQuery } = Bey.prototype as any;
+const { stringifyQuery } = BeyondPresence.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [

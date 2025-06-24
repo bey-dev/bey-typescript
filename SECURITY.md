@@ -16,9 +16,9 @@ before making any information public.
 ## Reporting Non-SDK Related Security Issues
 
 If you encounter security issues that are not directly related to SDKs but pertain to the services
-or products provided by Bey, please follow the respective company's security reporting guidelines.
+or products provided by Beyond Presence, please follow the respective company's security reporting guidelines.
 
-### Bey Terms and Policies
+### Beyond Presence Terms and Policies
 
 Please contact support@beyondpresence.ai for any questions or concerns regarding the security of our services.
 

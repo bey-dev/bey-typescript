@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { Bey } from '../client';
+import type { BeyondPresence } from '../client';
 
 export abstract class APIResource {
-  protected _client: Bey;
+  protected _client: BeyondPresence;
 
-  constructor(client: Bey) {
+  constructor(client: BeyondPresence) {
     this._client = client;
   }
 }

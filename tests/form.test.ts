@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'bey/internal/uploads';
-import { toFile } from 'bey/core/uploads';
+import { multipartFormRequestOptions, createForm } from '@bey-dev/sdk/internal/uploads';
+import { toFile } from '@bey-dev/sdk/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
