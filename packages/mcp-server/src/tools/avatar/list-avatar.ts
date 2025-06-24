@@ -4,7 +4,7 @@ import { asTextContentResult } from 'bey-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
-import Bey from '@bey-dev/sdk';
+import BeyondPresence from '@bey-dev/sdk';
 
 export const metadata: Metadata = {
   resource: 'avatar',
@@ -25,7 +25,7 @@ export const tool: Tool = {
   },
 };
 
-export const handler = async (client: Bey, args: Record<string, unknown> | undefined) => {
+export const handler = async (client: BeyondPresence, args: Record<string, unknown> | undefined) => {
   return asTextContentResult(await client.avatar.list());
 };
 

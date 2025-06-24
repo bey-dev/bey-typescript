@@ -50,7 +50,7 @@ export interface ClientOptions {
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['BEY_BASE_URL'].
+   * Defaults to process.env['BEYOND_PRESENCE_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -102,7 +102,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['BEY_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['BEYOND_PRESENCE_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -115,9 +115,9 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Bey API.
+ * API Client for interfacing with the Beyond Presence API.
  */
-export class Bey {
+export class BeyondPresence {
   apiKey: string;
 
   baseURL: string;
@@ -133,10 +133,10 @@ export class Bey {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Bey API.
+   * API Client for interfacing with the Beyond Presence API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['BEY_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['BEY_BASE_URL'] ?? https://api.bey.dev/] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['BEYOND_PRESENCE_BASE_URL'] ?? https://api.bey.dev/] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -145,13 +145,13 @@ export class Bey {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('BEY_BASE_URL'),
+    baseURL = readEnv('BEYOND_PRESENCE_BASE_URL'),
     apiKey = readEnv('BEY_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
-      throw new Errors.BeyError(
-        "The BEY_API_KEY environment variable is missing or empty; either provide it, or instantiate the Bey client with an apiKey option, like new Bey({ apiKey: 'My API Key' }).",
+      throw new Errors.BeyondPresenceError(
+        "The BEY_API_KEY environment variable is missing or empty; either provide it, or instantiate the BeyondPresence client with an apiKey option, like new BeyondPresence({ apiKey: 'My API Key' }).",
       );
     }
 
@@ -162,14 +162,14 @@ export class Bey {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? Bey.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? BeyondPresence.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('BEY_LOG'), "process.env['BEY_LOG']", this) ??
+      parseLogLevel(readEnv('BEYOND_PRESENCE_LOG'), "process.env['BEYOND_PRESENCE_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -231,7 +231,7 @@ export class Bey {
         if (value === null) {
           return `${encodeURIComponent(key)}=`;
         }
-        throw new Errors.BeyError(
+        throw new Errors.BeyondPresenceError(
           `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
         );
       })
@@ -701,10 +701,10 @@ export class Bey {
     }
   }
 
-  static Bey = this;
+  static BeyondPresence = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static BeyError = Errors.BeyError;
+  static BeyondPresenceError = Errors.BeyondPresenceError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -726,12 +726,12 @@ export class Bey {
   calls: API.Calls = new API.Calls(this);
   session: API.SessionResource = new API.SessionResource(this);
 }
-Bey.Agent = Agent;
-Bey.Auth = Auth;
-Bey.Avatar = Avatar;
-Bey.Calls = Calls;
-Bey.SessionResource = SessionResource;
-export declare namespace Bey {
+BeyondPresence.Agent = Agent;
+BeyondPresence.Auth = Auth;
+BeyondPresence.Avatar = Avatar;
+BeyondPresence.Calls = Calls;
+BeyondPresence.SessionResource = SessionResource;
+export declare namespace BeyondPresence {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
