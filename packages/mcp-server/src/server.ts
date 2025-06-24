@@ -4,8 +4,8 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { Endpoint, endpoints, HandlerFunction, query } from './tools';
 import { CallToolRequestSchema, ListToolsRequestSchema, Tool } from '@modelcontextprotocol/sdk/types.js';
-import { ClientOptions } from 'bey';
-import Bey from 'bey';
+import { ClientOptions } from '@bey-dev/sdk';
+import Bey from '@bey-dev/sdk';
 import {
   applyCompatibilityTransformations,
   ClientCapabilities,
@@ -19,13 +19,13 @@ import { McpOptions } from './options';
 export { McpOptions } from './options';
 export { ClientType } from './compat';
 export { Filter } from './tools';
-export { ClientOptions } from 'bey';
+export { ClientOptions } from '@bey-dev/sdk';
 export { endpoints } from './tools';
 
 // Create server instance
 export const server = new McpServer(
   {
-    name: 'bey_api',
+    name: 'bey_dev_sdk_api',
     version: '0.0.1-alpha.0',
   },
   {

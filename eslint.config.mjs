@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^bey(/.*)?',
+              regex: '^@bey-dev/sdk(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

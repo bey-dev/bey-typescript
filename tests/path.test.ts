@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'bey/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from '@bey-dev/sdk/internal/utils/path';
 import { inspect } from 'node:util';
 
 describe('path template tag function', () => {
