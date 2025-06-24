@@ -9,8 +9,8 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "bey/*": ["src/*"],
-      "bey": ["src/index.ts"]
+      "@bey-dev/sdk/*": ["src/*"],
+      "@bey-dev/sdk": ["src/index.ts"]
     },
     "noEmit": true,
 

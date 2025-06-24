@@ -1,4 +1,4 @@
-import Bey from 'bey';
+import Bey from '@bey-dev/sdk';
 import { Endpoint, asTextContentResult, ToolCallResult } from './tools/types';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { z } from 'zod';

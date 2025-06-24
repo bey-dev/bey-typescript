@@ -4,7 +4,7 @@ import { asTextContentResult } from 'bey-mcp/tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
 import type { Metadata } from '../';
-import Bey from 'bey';
+import Bey from '@bey-dev/sdk';
 
 export const metadata: Metadata = {
   resource: 'agent',
