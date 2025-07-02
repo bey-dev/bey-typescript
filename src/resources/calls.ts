@@ -25,7 +25,7 @@ export type CallListResponse = Array<CallListResponse.CallListResponseItem>;
 
 export namespace CallListResponse {
   /**
-   * Model for a call.
+   * Response model for a call.
    */
   export interface CallListResponseItem {
     /**

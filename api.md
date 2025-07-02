@@ -46,14 +46,3 @@ Methods:
 - <code title="get /v1/calls/{call_id}/messages">client.calls.<a href="./src/resources/calls.ts">listMessages</a>(callID) -> CallListMessagesResponse</code>
 
 # Session
-
-Types:
-
-- <code><a href="./src/resources/session.ts">Session</a></code>
-- <code><a href="./src/resources/session.ts">SessionListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/session">client.session.<a href="./src/resources/session.ts">create</a>({ ...params }) -> Session</code>
-- <code title="get /v1/session/{id}">client.session.<a href="./src/resources/session.ts">retrieve</a>(id) -> Session</code>
-- <code title="get /v1/session">client.session.<a href="./src/resources/session.ts">list</a>() -> SessionListResponse</code>

@@ -11,4 +11,4 @@ export {
 export { Auth, type AuthVerifyResponse } from './auth';
 export { Avatar, type AvatarListResponse } from './avatar';
 export { Calls, type CallListResponse, type CallListMessagesResponse } from './calls';
-export { SessionResource, type Session, type SessionListResponse, type SessionCreateParams } from './session';
+export { Session } from './session';

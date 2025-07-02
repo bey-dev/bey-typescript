@@ -185,14 +185,3 @@ The following tools are available in this MCP server.
 
 - `list_calls` (`read`): List all calls managed through agents by the owner of the API key.
 - `list_messages_calls` (`read`): List the messages of a call.
-
-### Resource `session`:
-
-- `create_session` (`write`): With the Beyond Presence Real-Time API you are able to turn audio and text into
-  hyper-realistic avatars in real-time.
-
-  Once a session is created, the selected avatar will automatically join the
-  WebRTC room and will start streaming audio and video to the user.
-
-- `retrieve_session` (`read`): Get a Real-Time API session by ID.
-- `list_session` (`read`): List all Real-Time API sessions that the owner of the API key has started.

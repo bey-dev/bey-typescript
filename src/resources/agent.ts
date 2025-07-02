@@ -31,7 +31,7 @@ export class Agent extends APIResource {
 /**
  * Enum for agent capabilities.
  */
-export type DeveloperAgentCapability = 'webcam_vision';
+export type DeveloperAgentCapability = 'webcam_vision' | 'silent_mode';
 
 /**
  * Response model for the agent.

@@ -27,7 +27,7 @@ import {
 import { Auth, AuthVerifyResponse } from './resources/auth';
 import { Avatar, AvatarListResponse } from './resources/avatar';
 import { CallListMessagesResponse, CallListResponse, Calls } from './resources/calls';
-import { Session, SessionCreateParams, SessionListResponse, SessionResource } from './resources/session';
+import { Session } from './resources/session';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -724,13 +724,13 @@ export class BeyondPresence {
   auth: API.Auth = new API.Auth(this);
   avatar: API.Avatar = new API.Avatar(this);
   calls: API.Calls = new API.Calls(this);
-  session: API.SessionResource = new API.SessionResource(this);
+  session: API.Session = new API.Session(this);
 }
 BeyondPresence.Agent = Agent;
 BeyondPresence.Auth = Auth;
 BeyondPresence.Avatar = Avatar;
 BeyondPresence.Calls = Calls;
-BeyondPresence.SessionResource = SessionResource;
+BeyondPresence.Session = Session;
 export declare namespace BeyondPresence {
   export type RequestOptions = Opts.RequestOptions;
 
@@ -753,10 +753,5 @@ export declare namespace BeyondPresence {
     type CallListMessagesResponse as CallListMessagesResponse,
   };
 
-  export {
-    SessionResource as SessionResource,
-    type Session as Session,
-    type SessionListResponse as SessionListResponse,
-    type SessionCreateParams as SessionCreateParams,
-  };
+  export { Session as Session };
 }
