@@ -102,7 +102,7 @@ export const tool: Tool = {
         type: 'string',
         title: 'DeveloperAgentCapability',
         description: 'Enum for agent capabilities.',
-        enum: ['webcam_vision'],
+        enum: ['webcam_vision', 'silent_mode'],
       },
     },
   },
