@@ -38,7 +38,7 @@ export type DeveloperAgentCapability = 'webcam_vision';
  */
 export interface DeveloperAgentResponse {
   /**
-   * The unique identifier (ID) of the agent.
+   * The unique identifier (ID) of this entity.
    */
   id: string;
 
@@ -53,7 +53,7 @@ export interface DeveloperAgentResponse {
   system_prompt: string;
 
   /**
-   * The agent capabilities.
+   * The extra capabilities to manage the call.
    */
   capabilities?: Array<DeveloperAgentCapability>;
 
@@ -63,9 +63,45 @@ export interface DeveloperAgentResponse {
   greeting?: string | null;
 
   /**
-   * The language to use.
+   * Enum for languages with language codes as values.
    */
-  language?: string | null;
+  language?:
+    | 'bg'
+    | 'zh'
+    | 'cs'
+    | 'da'
+    | 'nl'
+    | 'en'
+    | 'en-AU'
+    | 'en-GB'
+    | 'en-US'
+    | 'fi'
+    | 'fr'
+    | 'fr-CA'
+    | 'fr-FR'
+    | 'de'
+    | 'el'
+    | 'hi'
+    | 'hu'
+    | 'id'
+    | 'it'
+    | 'ja'
+    | 'ko'
+    | 'ms'
+    | 'no'
+    | 'pl'
+    | 'pt'
+    | 'pt-BR'
+    | 'pt-PT'
+    | 'ro'
+    | 'ru'
+    | 'sk'
+    | 'es'
+    | 'sv'
+    | 'tr'
+    | 'uk'
+    | 'vi'
+    | null;
 
   /**
    * The maximum session length in minutes.
@@ -73,7 +109,7 @@ export interface DeveloperAgentResponse {
   max_session_length_minutes?: number | null;
 
   /**
-   * The agent name.
+   * The display name to use.
    */
   name?: string | null;
 }
@@ -94,7 +130,7 @@ export interface AgentCreateParams {
   system_prompt: string;
 
   /**
-   * The agent capabilities.
+   * The extra capabilities to manage the call.
    */
   capabilities?: Array<DeveloperAgentCapability>;
 
@@ -104,9 +140,45 @@ export interface AgentCreateParams {
   greeting?: string | null;
 
   /**
-   * The language to use.
+   * Enum for languages with language codes as values.
    */
-  language?: string | null;
+  language?:
+    | 'bg'
+    | 'zh'
+    | 'cs'
+    | 'da'
+    | 'nl'
+    | 'en'
+    | 'en-AU'
+    | 'en-GB'
+    | 'en-US'
+    | 'fi'
+    | 'fr'
+    | 'fr-CA'
+    | 'fr-FR'
+    | 'de'
+    | 'el'
+    | 'hi'
+    | 'hu'
+    | 'id'
+    | 'it'
+    | 'ja'
+    | 'ko'
+    | 'ms'
+    | 'no'
+    | 'pl'
+    | 'pt'
+    | 'pt-BR'
+    | 'pt-PT'
+    | 'ro'
+    | 'ru'
+    | 'sk'
+    | 'es'
+    | 'sv'
+    | 'tr'
+    | 'uk'
+    | 'vi'
+    | null;
 
   /**
    * The maximum session length in minutes.
@@ -114,7 +186,7 @@ export interface AgentCreateParams {
   max_session_length_minutes?: number | null;
 
   /**
-   * The agent name.
+   * The display name to use.
    */
   name?: string | null;
 }
