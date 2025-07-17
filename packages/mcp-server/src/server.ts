@@ -28,11 +28,7 @@ export const server = new McpServer(
     name: 'bey_dev_sdk_api',
     version: '0.0.1',
   },
-  {
-    capabilities: {
-      tools: {},
-    },
-  },
+  { capabilities: { tools: {} } },
 );
 
 /**
