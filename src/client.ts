@@ -20,13 +20,14 @@ import {
   Agent,
   AgentCreateParams,
   AgentDeleteResponse,
+  AgentListParams,
   AgentListResponse,
   DeveloperAgentCapability,
   DeveloperAgentResponse,
 } from './resources/agent';
 import { Auth, AuthVerifyResponse } from './resources/auth';
-import { Avatar, AvatarListResponse } from './resources/avatar';
-import { CallListMessagesResponse, CallListResponse, Calls } from './resources/calls';
+import { Avatar, AvatarListParams, AvatarListResponse } from './resources/avatar';
+import { CallListMessagesResponse, CallListParams, CallListResponse, Calls } from './resources/calls';
 import { Session } from './resources/session';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -746,16 +747,22 @@ export declare namespace BeyondPresence {
     type AgentListResponse as AgentListResponse,
     type AgentDeleteResponse as AgentDeleteResponse,
     type AgentCreateParams as AgentCreateParams,
+    type AgentListParams as AgentListParams,
   };
 
   export { Auth as Auth, type AuthVerifyResponse as AuthVerifyResponse };
 
-  export { Avatar as Avatar, type AvatarListResponse as AvatarListResponse };
+  export {
+    Avatar as Avatar,
+    type AvatarListResponse as AvatarListResponse,
+    type AvatarListParams as AvatarListParams,
+  };
 
   export {
     Calls as Calls,
     type CallListResponse as CallListResponse,
     type CallListMessagesResponse as CallListMessagesResponse,
+    type CallListParams as CallListParams,
   };
 
   export { Session as Session };
