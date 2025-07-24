@@ -30,6 +30,9 @@ export const tool: Tool = {
     },
     required: [],
   },
+  annotations: {
+    readOnlyHint: true,
+  },
 };
 
 export const handler = async (client: BeyondPresence, args: Record<string, unknown> | undefined) => {

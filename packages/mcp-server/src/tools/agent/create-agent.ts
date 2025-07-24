@@ -114,6 +114,7 @@ export const tool: Tool = {
       },
     },
   },
+  annotations: {},
 };
 
 export const handler = async (client: BeyondPresence, args: Record<string, unknown> | undefined) => {
