@@ -9,8 +9,11 @@ export class Calls extends APIResource {
   /**
    * List all calls managed through agents by the owner of the API key.
    */
-  list(options?: RequestOptions): APIPromise<CallListResponse> {
-    return this._client.get('/v1/calls', options);
+  list(
+    query: CallListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<CallListResponse> {
+    return this._client.get('/v1/calls', { query, ...options });
   }
 
   /**
@@ -21,33 +24,71 @@ export class Calls extends APIResource {
   }
 }
 
-export type CallListResponse = Array<CallListResponse.CallListResponseItem>;
+/**
+ * Pagination model indicating more results are available.
+ */
+export type CallListResponse =
+  | CallListResponse._HasMorePaginationModel
+  | CallListResponse._NoMorePaginationModel;
 
 export namespace CallListResponse {
   /**
-   * Response model for a call.
+   * Pagination model indicating more results are available.
    */
-  export interface CallListResponseItem {
+  export interface _HasMorePaginationModel {
     /**
-     * The ID of the call.
+     * The list of results.
      */
-    id: string;
+    data: Array<_HasMorePaginationModel.Data>;
 
     /**
-     * The ID of the agent handling the call.
+     * The cursor for the next page of results.
      */
-    agent_id: string;
+    next_cursor: string;
 
     /**
-     * The end time of the call in ISO 8601 format. If null, the call might still be
-     * ongoing.
+     * Whether there are more results to fetch.
      */
-    ended_at: string | null;
+    has_more?: true;
+  }
+
+  export namespace _HasMorePaginationModel {
+    /**
+     * Base class for response models.
+     */
+    export interface Data {
+      /**
+       * Unique identifier of the object.
+       */
+      id: string;
+    }
+  }
+
+  /**
+   * Pagination model indicating no more results.
+   */
+  export interface _NoMorePaginationModel {
+    /**
+     * The list of results.
+     */
+    data: Array<_NoMorePaginationModel.Data>;
 
     /**
-     * The start time of the call in ISO 8601 format.
+     * Whether there are more results to fetch.
      */
-    started_at: string;
+    has_more?: boolean;
+  }
+
+  export namespace _NoMorePaginationModel {
+    /**
+     * Base class for response models.
+     */
+    export interface Data {
+      /**
+       * Unique identifier of the object.
+       */
+      id: string;
+    }
   }
 }
 
@@ -75,9 +116,22 @@ export namespace CallListMessagesResponse {
   }
 }
 
+export interface CallListParams {
+  /**
+   * Cursor for pagination
+   */
+  cursor?: string | null;
+
+  /**
+   * The maximum number of calls to return
+   */
+  limit?: number;
+}
+
 export declare namespace Calls {
   export {
     type CallListResponse as CallListResponse,
     type CallListMessagesResponse as CallListMessagesResponse,
+    type CallListParams as CallListParams,
   };
 }

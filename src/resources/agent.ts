@@ -16,8 +16,11 @@ export class Agent extends APIResource {
   /**
    * List all agents the owner of the API key has access to.
    */
-  list(options?: RequestOptions): APIPromise<AgentListResponse> {
-    return this._client.get('/v1/agent', options);
+  list(
+    query: AgentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<AgentListResponse> {
+    return this._client.get('/v1/agent', { query, ...options });
   }
 
   /**
@@ -38,7 +41,7 @@ export type DeveloperAgentCapability = 'webcam_vision' | 'silent_mode';
  */
 export interface DeveloperAgentResponse {
   /**
-   * The unique identifier (ID) of this entity.
+   * Unique identifier of the object.
    */
   id: string;
 
@@ -114,7 +117,73 @@ export interface DeveloperAgentResponse {
   name?: string | null;
 }
 
-export type AgentListResponse = Array<DeveloperAgentResponse>;
+/**
+ * Pagination model indicating more results are available.
+ */
+export type AgentListResponse =
+  | AgentListResponse._HasMorePaginationModel
+  | AgentListResponse._NoMorePaginationModel;
+
+export namespace AgentListResponse {
+  /**
+   * Pagination model indicating more results are available.
+   */
+  export interface _HasMorePaginationModel {
+    /**
+     * The list of results.
+     */
+    data: Array<_HasMorePaginationModel.Data>;
+
+    /**
+     * The cursor for the next page of results.
+     */
+    next_cursor: string;
+
+    /**
+     * Whether there are more results to fetch.
+     */
+    has_more?: true;
+  }
+
+  export namespace _HasMorePaginationModel {
+    /**
+     * Base class for response models.
+     */
+    export interface Data {
+      /**
+       * Unique identifier of the object.
+       */
+      id: string;
+    }
+  }
+
+  /**
+   * Pagination model indicating no more results.
+   */
+  export interface _NoMorePaginationModel {
+    /**
+     * The list of results.
+     */
+    data: Array<_NoMorePaginationModel.Data>;
+
+    /**
+     * Whether there are more results to fetch.
+     */
+    has_more?: boolean;
+  }
+
+  export namespace _NoMorePaginationModel {
+    /**
+     * Base class for response models.
+     */
+    export interface Data {
+      /**
+       * Unique identifier of the object.
+       */
+      id: string;
+    }
+  }
+}
 
 export type AgentDeleteResponse = unknown;
 
@@ -191,6 +260,18 @@ export interface AgentCreateParams {
   name?: string | null;
 }
 
+export interface AgentListParams {
+  /**
+   * Cursor for pagination
+   */
+  cursor?: string | null;
+
+  /**
+   * The maximum number of agents to return
+   */
+  limit?: number;
+}
+
 export declare namespace Agent {
   export {
     type DeveloperAgentCapability as DeveloperAgentCapability,
@@ -198,5 +279,6 @@ export declare namespace Agent {
     type AgentListResponse as AgentListResponse,
     type AgentDeleteResponse as AgentDeleteResponse,
     type AgentCreateParams as AgentCreateParams,
+    type AgentListParams as AgentListParams,
   };
 }

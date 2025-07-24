@@ -18,10 +18,20 @@ export const metadata: Metadata = {
 export const tool: Tool = {
   name: 'list_calls',
   description:
-    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nList all calls managed through agents by the owner of the API key.\n\n# Response Schema\n```json\n{\n  type: 'array',\n  title: 'Response List Calls V1 Calls Get',\n  items: {\n    type: 'object',\n    title: 'DeveloperCallResponseModel',\n    description: 'Response model for a call.',\n    properties: {\n      id: {\n        type: 'string',\n        title: 'Id',\n        description: 'The ID of the call.'\n      },\n      agent_id: {\n        type: 'string',\n        title: 'Agent Id',\n        description: 'The ID of the agent handling the call.'\n      },\n      ended_at: {\n        type: 'string',\n        title: 'Ended At',\n        description: 'The end time of the call in ISO 8601 format. If null, the call might still be ongoing.'\n      },\n      started_at: {\n        type: 'string',\n        title: 'Started At',\n        description: 'The start time of the call in ISO 8601 format.'\n      }\n    },\n    required: [      'id',\n      'agent_id',\n      'ended_at',\n      'started_at'\n    ]\n  }\n}\n```",
+    "When using this tool, always use the `jq_filter` parameter to reduce the response size and improve performance.\n\nOnly omit if you're sure you don't need the data.\n\nList all calls managed through agents by the owner of the API key.\n\n# Response Schema\n```json\n{\n  anyOf: [    {\n      type: 'object',\n      title: '_HasMorePaginationModel',\n      description: 'Pagination model indicating more results are available.',\n      properties: {\n        data: {\n          type: 'array',\n          title: 'Data',\n          description: 'The list of results.',\n          items: {\n            type: 'object',\n            title: 'BaseResponseModel',\n            description: 'Base class for response models.',\n            properties: {\n              id: {\n                type: 'string',\n                title: 'Id',\n                description: 'Unique identifier of the object.'\n              }\n            },\n            required: [              'id'\n            ]\n          }\n        },\n        next_cursor: {\n          type: 'string',\n          title: 'Next Cursor',\n          description: 'The cursor for the next page of results.'\n        },\n        has_more: {\n          type: 'string',\n          title: 'Has More',\n          description: 'Whether there are more results to fetch.',\n          enum: [            true\n          ]\n        }\n      },\n      required: [        'data',\n        'next_cursor'\n      ]\n    },\n    {\n      type: 'object',\n      title: '_NoMorePaginationModel',\n      description: 'Pagination model indicating no more results.',\n      properties: {\n        data: {\n          type: 'array',\n          title: 'Data',\n          description: 'The list of results.',\n          items: {\n            type: 'object',\n            title: 'BaseResponseModel',\n            description: 'Base class for response models.',\n            properties: {\n              id: {\n                type: 'string',\n                title: 'Id',\n                description: 'Unique identifier of the object.'\n              }\n            },\n            required: [              'id'\n            ]\n          }\n        },\n        has_more: {\n          type: 'boolean',\n          title: 'Has More',\n          description: 'Whether there are more results to fetch.'\n        }\n      },\n      required: [        'data'\n      ]\n    }\n  ],\n  title: 'Response List Calls V1 Calls Get',\n  description: 'Pagination model indicating more results are available.'\n}\n```",
   inputSchema: {
     type: 'object',
     properties: {
+      cursor: {
+        type: 'string',
+        title: 'Cursor',
+        description: 'Cursor for pagination',
+      },
+      limit: {
+        type: 'integer',
+        title: 'Limit',
+        description: 'The maximum number of calls to return',
+      },
       jq_filter: {
         type: 'string',
         title: 'jq Filter',
@@ -37,7 +47,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: BeyondPresence, args: Record<string, unknown> | undefined) => {
-  return asTextContentResult(await maybeFilter(args, await client.calls.list()));
+  const body = args as any;
+  return asTextContentResult(await maybeFilter(args, await client.calls.list(body)));
 };
 
 export default { metadata, tool, handler };

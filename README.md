@@ -26,7 +26,7 @@ const client = new BeyondPresence({
   apiKey: process.env['BEY_API_KEY'], // This is the default and can be omitted
 });
 
-const developerAgentResponses = await client.agent.list();
+const agents = await client.agent.list();
 ```
 
 ### Request & Response types
@@ -41,7 +41,7 @@ const client = new BeyondPresence({
   apiKey: process.env['BEY_API_KEY'], // This is the default and can be omitted
 });
 
-const developerAgentResponses: BeyondPresence.AgentListResponse = await client.agent.list();
+const agents: BeyondPresence.AgentListResponse = await client.agent.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -54,7 +54,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const developerAgentResponses = await client.agent.list().catch(async (err) => {
+const agents = await client.agent.list().catch(async (err) => {
   if (err instanceof BeyondPresence.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -138,9 +138,9 @@ const response = await client.agent.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: developerAgentResponses, response: raw } = await client.agent.list().withResponse();
+const { data: agents, response: raw } = await client.agent.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(developerAgentResponses);
+console.log(agents);
 ```
 
 ### Logging
