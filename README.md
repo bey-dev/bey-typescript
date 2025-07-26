@@ -26,7 +26,13 @@ const client = new BeyondPresence({
   apiKey: process.env['BEY_API_KEY'], // This is the default and can be omitted
 });
 
-const agents = await client.agent.list();
+const session = await client.session.create({
+  avatar_id: '01234567-89ab-cdef-0123-456789abcdef',
+  livekit_token: '<your-livekit-token>',
+  livekit_url: 'wss://<your-domain>.livekit.cloud',
+});
+
+console.log(session.id);
 ```
 
 ### Request & Response types
@@ -220,7 +226,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.agent.list({
+client.session.create({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
