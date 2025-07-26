@@ -11,6 +11,9 @@ import verify_auth from './auth/verify-auth';
 import list_avatar from './avatar/list-avatar';
 import list_calls from './calls/list-calls';
 import list_messages_calls from './calls/list-messages-calls';
+import create_session from './session/create-session';
+import retrieve_session from './session/retrieve-session';
+import list_session from './session/list-session';
 
 export const endpoints: Endpoint[] = [];
 
@@ -25,6 +28,9 @@ addEndpoint(verify_auth);
 addEndpoint(list_avatar);
 addEndpoint(list_calls);
 addEndpoint(list_messages_calls);
+addEndpoint(create_session);
+addEndpoint(retrieve_session);
+addEndpoint(list_session);
 
 export type Filter = {
   type: 'resource' | 'operation' | 'tag' | 'tool';

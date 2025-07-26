@@ -12,4 +12,4 @@ export {
 export { Auth, type AuthVerifyResponse } from './auth';
 export { Avatar, type AvatarListResponse, type AvatarListParams } from './avatar';
 export { Calls, type CallListResponse, type CallListMessagesResponse, type CallListParams } from './calls';
-export { Session } from './session';
+export { SessionResource, type Session, type SessionListResponse, type SessionCreateParams } from './session';
