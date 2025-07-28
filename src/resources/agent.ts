@@ -34,7 +34,7 @@ export class Agent extends APIResource {
 /**
  * Enum for agent capabilities.
  */
-export type DeveloperAgentCapability = 'webcam_vision' | 'silent_mode';
+export type DeveloperAgentCapability = 'webcam_vision';
 
 /**
  * Response model for the agent.
@@ -69,6 +69,7 @@ export interface DeveloperAgentResponse {
    * Enum for languages with language codes as values.
    */
   language?:
+    | 'ar'
     | 'bg'
     | 'zh'
     | 'cs'
@@ -103,6 +104,7 @@ export interface DeveloperAgentResponse {
     | 'sv'
     | 'tr'
     | 'uk'
+    | 'ur'
     | 'vi'
     | null;
 
@@ -212,6 +214,7 @@ export interface AgentCreateParams {
    * Enum for languages with language codes as values.
    */
   language?:
+    | 'ar'
     | 'bg'
     | 'zh'
     | 'cs'
@@ -246,6 +249,7 @@ export interface AgentCreateParams {
     | 'sv'
     | 'tr'
     | 'uk'
+    | 'ur'
     | 'vi'
     | null;
 
