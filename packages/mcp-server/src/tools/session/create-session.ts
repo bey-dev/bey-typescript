@@ -50,8 +50,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: BeyondPresence, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
-  return asTextContentResult(await maybeFilter(args, await client.session.create(body)));
+  const { jq_filter, ...body } = args as any;
+  return asTextContentResult(await maybeFilter(jq_filter, await client.session.create(body)));
 };
 
 export default { metadata, tool, handler };
