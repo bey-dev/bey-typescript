@@ -14,7 +14,7 @@ export class Agent extends APIResource {
   }
 
   /**
-   * List all agents the owner of the API key has access to.
+   * List the available agents.
    */
   list(
     query: AgentListParams | null | undefined = {},

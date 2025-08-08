@@ -168,7 +168,7 @@ The following tools are available in this MCP server.
 ### Resource `agent`:
 
 - `create_agent` (`write`): Create an agent.
-- `list_agent` (`read`): List all agents the owner of the API key has access to.
+- `list_agent` (`read`): List the available agents.
 - `delete_agent` (`write`): Delete an agent.
 
 ### Resource `auth`:
@@ -177,13 +177,13 @@ The following tools are available in this MCP server.
 
 ### Resource `avatar`:
 
-- `list_avatar` (`read`): List all avatars the owner of the API key has access to.
+- `list_avatar` (`read`): List the available avatars.
 
   See docs.bey.dev/avatar for more information on avatars.
 
 ### Resource `calls`:
 
-- `list_calls` (`read`): List all calls managed through agents by the owner of the API key.
+- `list_calls` (`read`): List the calls managed by your agents.
 - `list_messages_calls` (`read`): List the messages of a call.
 
 ### Resource `session`:

@@ -7,7 +7,7 @@ import { path } from '../internal/utils/path';
 
 export class Calls extends APIResource {
   /**
-   * List all calls managed through agents by the owner of the API key.
+   * List the calls managed by your agents.
    */
   list(
     query: CallListParams | null | undefined = {},
