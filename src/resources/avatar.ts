@@ -6,7 +6,7 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Avatar extends APIResource {
   /**
-   * List all avatars the owner of the API key has access to.
+   * List the available avatars.
    *
    * See docs.bey.dev/avatar for more information on avatars.
    */
