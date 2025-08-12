@@ -8,7 +8,7 @@ const client = new BeyondPresence({
 });
 
 describe('resource auth', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('verify', async () => {
     const responsePromise = client.auth.verify();
     const rawResponse = await responsePromise.asResponse();

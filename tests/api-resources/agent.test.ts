@@ -8,7 +8,7 @@ const client = new BeyondPresence({
 });
 
 describe('resource agent', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.agent.create({
       avatar_id: '01234567-89ab-cdef-0123-456789abcdef',
@@ -23,7 +23,7 @@ describe('resource agent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.agent.create({
       avatar_id: '01234567-89ab-cdef-0123-456789abcdef',
@@ -36,7 +36,7 @@ describe('resource agent', () => {
     });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.agent.list();
     const rawResponse = await responsePromise.asResponse();
@@ -48,7 +48,7 @@ describe('resource agent', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
@@ -56,7 +56,7 @@ describe('resource agent', () => {
     ).rejects.toThrow(BeyondPresence.NotFoundError);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('delete', async () => {
     const responsePromise = client.agent.delete('agent_id');
     const rawResponse = await responsePromise.asResponse();
