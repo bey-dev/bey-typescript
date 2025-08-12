@@ -8,7 +8,7 @@ const client = new BeyondPresence({
 });
 
 describe('resource session', () => {
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: only required params', async () => {
     const responsePromise = client.session.create({
       avatar_id: '01234567-89ab-cdef-0123-456789abcdef',
@@ -24,7 +24,7 @@ describe('resource session', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.session.create({
       avatar_id: '01234567-89ab-cdef-0123-456789abcdef',
@@ -33,7 +33,7 @@ describe('resource session', () => {
     });
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('retrieve', async () => {
     const responsePromise = client.session.retrieve('id');
     const rawResponse = await responsePromise.asResponse();
@@ -45,7 +45,7 @@ describe('resource session', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
+  // Prism tests are disabled
   test.skip('list', async () => {
     const responsePromise = client.session.list();
     const rawResponse = await responsePromise.asResponse();
