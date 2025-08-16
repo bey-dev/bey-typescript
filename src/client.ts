@@ -732,11 +732,13 @@ export class BeyondPresence {
   calls: API.Calls = new API.Calls(this);
   session: API.SessionResource = new API.SessionResource(this);
 }
+
 BeyondPresence.Agent = Agent;
 BeyondPresence.Auth = Auth;
 BeyondPresence.Avatar = Avatar;
 BeyondPresence.Calls = Calls;
 BeyondPresence.SessionResource = SessionResource;
+
 export declare namespace BeyondPresence {
   export type RequestOptions = Opts.RequestOptions;
 
