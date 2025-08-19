@@ -54,11 +54,11 @@ export namespace CallListResponse {
 
   export namespace _HasMorePaginationModel {
     /**
-     * Base class for response models.
+     * Base class for models saved in our database.
      */
     export interface Data {
       /**
-       * Unique identifier of the object.
+       * Unique identifier of the object in the database.
        */
       id: string;
     }
@@ -81,11 +81,11 @@ export namespace CallListResponse {
 
   export namespace _NoMorePaginationModel {
     /**
-     * Base class for response models.
+     * Base class for models saved in our database.
      */
     export interface Data {
       /**
-       * Unique identifier of the object.
+       * Unique identifier of the object in the database.
        */
       id: string;
     }

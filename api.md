@@ -2,7 +2,6 @@
 
 Types:
 
-- <code><a href="./src/resources/agent.ts">DeveloperAgentCapability</a></code>
 - <code><a href="./src/resources/agent.ts">DeveloperAgentResponse</a></code>
 - <code><a href="./src/resources/agent.ts">AgentListResponse</a></code>
 - <code><a href="./src/resources/agent.ts">AgentDeleteResponse</a></code>

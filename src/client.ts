@@ -22,7 +22,6 @@ import {
   AgentDeleteResponse,
   AgentListParams,
   AgentListResponse,
-  DeveloperAgentCapability,
   DeveloperAgentResponse,
 } from './resources/agent';
 import { Auth, AuthVerifyResponse } from './resources/auth';
@@ -744,7 +743,6 @@ export declare namespace BeyondPresence {
 
   export {
     Agent as Agent,
-    type DeveloperAgentCapability as DeveloperAgentCapability,
     type DeveloperAgentResponse as DeveloperAgentResponse,
     type AgentListResponse as AgentListResponse,
     type AgentDeleteResponse as AgentDeleteResponse,
