@@ -2,7 +2,6 @@
 
 export {
   Agent,
-  type DeveloperAgentCapability,
   type DeveloperAgentResponse,
   type AgentListResponse,
   type AgentDeleteResponse,

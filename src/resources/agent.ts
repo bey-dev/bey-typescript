@@ -32,16 +32,11 @@ export class Agent extends APIResource {
 }
 
 /**
- * Enum for agent capabilities.
- */
-export type DeveloperAgentCapability = 'webcam_vision';
-
-/**
  * Response model for the agent.
  */
 export interface DeveloperAgentResponse {
   /**
-   * Unique identifier of the object.
+   * Unique identifier of the object in the database.
    */
   id: string;
 
@@ -58,7 +53,7 @@ export interface DeveloperAgentResponse {
   /**
    * The extra capabilities to manage the call.
    */
-  capabilities?: Array<DeveloperAgentCapability>;
+  capabilities?: Array<DeveloperAgentResponse.WebcamVision | DeveloperAgentResponse.WakeupMode>;
 
   /**
    * What to say at the start of the session.
@@ -109,6 +104,11 @@ export interface DeveloperAgentResponse {
     | null;
 
   /**
+   * Configuration for the LLM to use.
+   */
+  llm?: DeveloperAgentResponse.OpenAI | DeveloperAgentResponse.OpenAICompatible | null;
+
+  /**
    * The maximum session length in minutes.
    */
   max_session_length_minutes?: number | null;
@@ -117,6 +117,50 @@ export interface DeveloperAgentResponse {
    * The display name to use.
    */
   name?: string | null;
+}
+
+export namespace DeveloperAgentResponse {
+  /**
+   * Capability for agent to visualize user webcam feed.
+   */
+  export interface WebcamVision {
+    type?: 'webcam_vision';
+  }
+
+  /**
+   * Capability for agent to wake up only on specific keywords.
+   */
+  export interface WakeupMode {
+    triggers: Array<string>;
+
+    type?: 'wakeup_mode';
+  }
+
+  /**
+   * Configuration for OpenAI LLM.
+   */
+  export interface OpenAI {
+    type?: 'openai';
+  }
+
+  /**
+   * Configuration for an LLM provided by an OpenAI-compatible API.
+   *
+   * NOTE: The notion of "OpenAI-compatible API" seems somewhat fuzzy, there is no
+   * agreed upon standard for what it means. In practice, we care if the API is
+   * compatible with how LiveKit's openai plugin interacts with the API, i.e. a
+   * subset of OpenAI's API specification:
+   * https://platform.openai.com/docs/api-reference/introduction
+   */
+  export interface OpenAICompatible {
+    api_id: string;
+
+    model: string;
+
+    temperature: number;
+
+    type?: 'openai_compatible';
+  }
 }
 
 /**
@@ -149,11 +193,11 @@ export namespace AgentListResponse {
 
   export namespace _HasMorePaginationModel {
     /**
-     * Base class for response models.
+     * Base class for models saved in our database.
      */
     export interface Data {
       /**
-       * Unique identifier of the object.
+       * Unique identifier of the object in the database.
        */
       id: string;
     }
@@ -176,11 +220,11 @@ export namespace AgentListResponse {
 
   export namespace _NoMorePaginationModel {
     /**
-     * Base class for response models.
+     * Base class for models saved in our database.
      */
     export interface Data {
       /**
-       * Unique identifier of the object.
+       * Unique identifier of the object in the database.
        */
       id: string;
     }
@@ -203,7 +247,7 @@ export interface AgentCreateParams {
   /**
    * The extra capabilities to manage the call.
    */
-  capabilities?: Array<DeveloperAgentCapability>;
+  capabilities?: Array<AgentCreateParams.WebcamVision | AgentCreateParams.WakeupMode>;
 
   /**
    * What to say at the start of the session.
@@ -254,6 +298,11 @@ export interface AgentCreateParams {
     | null;
 
   /**
+   * Configuration for the LLM to use.
+   */
+  llm?: AgentCreateParams.OpenAI | AgentCreateParams.OpenAICompatible | null;
+
+  /**
    * The maximum session length in minutes.
    */
   max_session_length_minutes?: number | null;
@@ -262,6 +311,50 @@ export interface AgentCreateParams {
    * The display name to use.
    */
   name?: string | null;
+}
+
+export namespace AgentCreateParams {
+  /**
+   * Capability for agent to visualize user webcam feed.
+   */
+  export interface WebcamVision {
+    type?: 'webcam_vision';
+  }
+
+  /**
+   * Capability for agent to wake up only on specific keywords.
+   */
+  export interface WakeupMode {
+    triggers: Array<string>;
+
+    type?: 'wakeup_mode';
+  }
+
+  /**
+   * Configuration for OpenAI LLM.
+   */
+  export interface OpenAI {
+    type?: 'openai';
+  }
+
+  /**
+   * Configuration for an LLM provided by an OpenAI-compatible API.
+   *
+   * NOTE: The notion of "OpenAI-compatible API" seems somewhat fuzzy, there is no
+   * agreed upon standard for what it means. In practice, we care if the API is
+   * compatible with how LiveKit's openai plugin interacts with the API, i.e. a
+   * subset of OpenAI's API specification:
+   * https://platform.openai.com/docs/api-reference/introduction
+   */
+  export interface OpenAICompatible {
+    api_id: string;
+
+    model: string;
+
+    temperature: number;
+
+    type?: 'openai_compatible';
+  }
 }
 
 export interface AgentListParams {
@@ -278,7 +371,6 @@ export interface AgentListParams {
 
 export declare namespace Agent {
   export {
-    type DeveloperAgentCapability as DeveloperAgentCapability,
     type DeveloperAgentResponse as DeveloperAgentResponse,
     type AgentListResponse as AgentListResponse,
     type AgentDeleteResponse as AgentDeleteResponse,

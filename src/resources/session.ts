@@ -37,7 +37,7 @@ export class SessionResource extends APIResource {
  */
 export interface Session {
   /**
-   * Unique identifier of the object.
+   * Unique identifier of the object in the database.
    */
   id: string;
 
