@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from '@bey-dev/sdk/client';
+import { ClientOptions } from '@bey-dev/sdk';
 
 export type WorkerInput = {
   opts: ClientOptions;

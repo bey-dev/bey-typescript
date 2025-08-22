@@ -1,10 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { type ClientOptions } from '@bey-dev/sdk/client';
-
 import { dirname } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import BeyondPresence from '@bey-dev/sdk';
+import BeyondPresence, { ClientOptions } from '@bey-dev/sdk';
 import { Endpoint, ContentBlock, Metadata } from './tools/types';
 
 import { Tool } from '@modelcontextprotocol/sdk/types.js';
