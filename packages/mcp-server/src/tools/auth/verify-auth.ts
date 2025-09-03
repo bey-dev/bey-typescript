@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export const tool: Tool = {
   name: 'verify_auth',
-  description: 'Verify that the request is authenticated using a valid API key.',
+  description: 'Verify authentication with API key.',
   inputSchema: {
     type: 'object',
     properties: {},
@@ -28,7 +28,8 @@ export const tool: Tool = {
 };
 
 export const handler = async (client: BeyondPresence, args: Record<string, unknown> | undefined) => {
-  return asTextContentResult((await client.auth.verify()) as object);
+  const response = await client.auth.verify().asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

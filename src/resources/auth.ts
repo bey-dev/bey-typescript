@@ -2,19 +2,17 @@
 
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
+import { buildHeaders } from '../internal/headers';
 import { RequestOptions } from '../internal/request-options';
 
 export class Auth extends APIResource {
   /**
-   * Verify that the request is authenticated using a valid API key.
+   * Verify authentication with API key.
    */
-  verify(options?: RequestOptions): APIPromise<unknown> {
-    return this._client.get('/v1/auth/verify', options);
+  verify(options?: RequestOptions): APIPromise<void> {
+    return this._client.get('/v1/auth/verify', {
+      ...options,
+      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
+    });
   }
-}
-
-export type AuthVerifyResponse = unknown;
-
-export declare namespace Auth {
-  export { type AuthVerifyResponse as AuthVerifyResponse };
 }

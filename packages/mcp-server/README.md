@@ -170,7 +170,7 @@ http://localhost:3000?client=cursor&capability=tool-name-length%3D40
 import { server, endpoints, init } from "bey-mcp/server";
 
 // import a specific tool
-import createAgent from "bey-mcp/tools/agent/create-agent";
+import verifyAuth from "bey-mcp/tools/auth/verify-auth";
 
 // initialize the server and all endpoints
 init({ server, endpoints });
@@ -195,41 +195,17 @@ const myCustomEndpoint = {
 };
 
 // initialize the server with your custom endpoints
-init({ server: myServer, endpoints: [createAgent, myCustomEndpoint] });
+init({ server: myServer, endpoints: [verifyAuth, myCustomEndpoint] });
 ```
 
 ## Available Tools
 
 The following tools are available in this MCP server.
 
-### Resource `agent`:
-
-- `create_agent` (`write`): Create an agent.
-- `list_agent` (`read`): List the available agents.
-- `delete_agent` (`write`): Delete an agent.
-
 ### Resource `auth`:
 
-- `verify_auth` (`read`): Verify that the request is authenticated using a valid API key.
-
-### Resource `avatar`:
-
-- `list_avatar` (`read`): List the available avatars.
-
-  See docs.bey.dev/avatar for more information on avatars.
+- `verify_auth` (`read`): Verify authentication with API key.
 
 ### Resource `calls`:
 
-- `list_calls` (`read`): List the calls managed by your agents.
-- `list_messages_calls` (`read`): List the messages of a call.
-
-### Resource `session`:
-
-- `create_session` (`write`): With the Beyond Presence Real-Time API you are able to turn audio and text into
-  hyper-realistic avatars in real-time.
-
-  Once a session is created, the selected avatar will automatically join the
-  WebRTC room and will start streaming audio and video to the user.
-
-- `retrieve_session` (`read`): Get a Real-Time API session by ID.
-- `list_session` (`read`): List all Real-Time API sessions that the owner of the API key has started.
+- `list_calls` (`read`): List calls managed by your agents.

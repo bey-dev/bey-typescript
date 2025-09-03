@@ -3,11 +3,10 @@
 import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
-import { path } from '../internal/utils/path';
 
 export class Calls extends APIResource {
   /**
-   * List the calls managed by your agents.
+   * List calls managed by your agents.
    */
   list(
     query: CallListParams | null | undefined = {},
@@ -15,123 +14,109 @@ export class Calls extends APIResource {
   ): APIPromise<CallListResponse> {
     return this._client.get('/v1/calls', { query, ...options });
   }
-
-  /**
-   * List the messages of a call.
-   */
-  listMessages(callID: string, options?: RequestOptions): APIPromise<CallListMessagesResponse> {
-    return this._client.get(path`/v1/calls/${callID}/messages`, options);
-  }
 }
 
-/**
- * Pagination model indicating more results are available.
- */
 export type CallListResponse =
-  | CallListResponse._HasMorePaginationModel
-  | CallListResponse._NoMorePaginationModel;
+  | CallListResponse.HasMorePageCallResponse
+  | CallListResponse.NoMorePageCallResponse;
 
 export namespace CallListResponse {
-  /**
-   * Pagination model indicating more results are available.
-   */
-  export interface _HasMorePaginationModel {
+  export interface HasMorePageCallResponse {
     /**
-     * The list of results.
+     * List of objects.
      */
-    data: Array<_HasMorePaginationModel.Data>;
+    data: Array<HasMorePageCallResponse.Data>;
 
     /**
-     * The cursor for the next page of results.
+     * The cursor for the next page of objects.
      */
     next_cursor: string;
 
     /**
-     * Whether there are more results to fetch.
+     * Whether there are more objects to fetch.
      */
     has_more?: true;
   }
 
-  export namespace _HasMorePaginationModel {
+  export namespace HasMorePageCallResponse {
     /**
-     * Base class for models saved in our database.
+     * Response model for a call.
      */
     export interface Data {
       /**
        * Unique identifier of the object in the database.
        */
       id: string;
+
+      /**
+       * ID of managing agent.
+       */
+      agent_id: string;
+
+      /**
+       * End time in ISO 8601 format. If null, call might still be ongoing.
+       */
+      ended_at: string | null;
+
+      /**
+       * Start time in ISO 8601 format.
+       */
+      started_at: string;
     }
   }
 
-  /**
-   * Pagination model indicating no more results.
-   */
-  export interface _NoMorePaginationModel {
+  export interface NoMorePageCallResponse {
     /**
-     * The list of results.
+     * List of objects.
      */
-    data: Array<_NoMorePaginationModel.Data>;
+    data: Array<NoMorePageCallResponse.Data>;
 
     /**
-     * Whether there are more results to fetch.
+     * Whether there are more objects to fetch.
      */
     has_more?: boolean;
   }
 
-  export namespace _NoMorePaginationModel {
+  export namespace NoMorePageCallResponse {
     /**
-     * Base class for models saved in our database.
+     * Response model for a call.
      */
     export interface Data {
       /**
        * Unique identifier of the object in the database.
        */
       id: string;
+
+      /**
+       * ID of managing agent.
+       */
+      agent_id: string;
+
+      /**
+       * End time in ISO 8601 format. If null, call might still be ongoing.
+       */
+      ended_at: string | null;
+
+      /**
+       * Start time in ISO 8601 format.
+       */
+      started_at: string;
     }
-  }
-}
-
-export type CallListMessagesResponse = Array<CallListMessagesResponse.CallListMessagesResponseItem>;
-
-export namespace CallListMessagesResponse {
-  /**
-   * Model for a call message.
-   */
-  export interface CallListMessagesResponseItem {
-    /**
-     * The message content.
-     */
-    message: string;
-
-    /**
-     * The sender of the message.
-     */
-    sender: 'ai' | 'user';
-
-    /**
-     * The time the message was sent in ISO 8601 format.
-     */
-    sent_at: string;
   }
 }
 
 export interface CallListParams {
   /**
-   * Cursor for pagination
+   * Cursor for pagination.
    */
   cursor?: string | null;
 
   /**
-   * The maximum number of calls to return
+   * Maximum number of objects to return.
    */
   limit?: number;
 }
 
 export declare namespace Calls {
-  export {
-    type CallListResponse as CallListResponse,
-    type CallListMessagesResponse as CallListMessagesResponse,
-    type CallListParams as CallListParams,
-  };
+  export { type CallListResponse as CallListResponse, type CallListParams as CallListParams };
 }

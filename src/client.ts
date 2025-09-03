@@ -16,18 +16,11 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import {
-  Agent,
-  AgentCreateParams,
-  AgentDeleteResponse,
-  AgentListParams,
-  AgentListResponse,
-  DeveloperAgentResponse,
-} from './resources/agent';
-import { Auth, AuthVerifyResponse } from './resources/auth';
-import { Avatar, AvatarListParams, AvatarListResponse } from './resources/avatar';
-import { CallListMessagesResponse, CallListParams, CallListResponse, Calls } from './resources/calls';
-import { Session, SessionCreateParams, SessionListResponse, SessionResource } from './resources/session';
+import { Agent } from './resources/agent';
+import { Auth } from './resources/auth';
+import { Avatar } from './resources/avatar';
+import { CallListParams, CallListResponse, Calls } from './resources/calls';
+import { Session } from './resources/session';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -379,7 +372,7 @@ export class BeyondPresence {
     const response = await this.fetchWithTimeout(url, req, timeout, controller).catch(castToError);
     const headersTime = Date.now();
 
-    if (response instanceof Error) {
+    if (response instanceof globalThis.Error) {
       const retryMessage = `retrying, ${retriesRemaining} attempts remaining`;
       if (options.signal?.aborted) {
         throw new Errors.APIUserAbortError();
@@ -729,46 +722,25 @@ export class BeyondPresence {
   auth: API.Auth = new API.Auth(this);
   avatar: API.Avatar = new API.Avatar(this);
   calls: API.Calls = new API.Calls(this);
-  session: API.SessionResource = new API.SessionResource(this);
+  session: API.Session = new API.Session(this);
 }
 
 BeyondPresence.Agent = Agent;
 BeyondPresence.Auth = Auth;
 BeyondPresence.Avatar = Avatar;
 BeyondPresence.Calls = Calls;
-BeyondPresence.SessionResource = SessionResource;
+BeyondPresence.Session = Session;
 
 export declare namespace BeyondPresence {
   export type RequestOptions = Opts.RequestOptions;
 
-  export {
-    Agent as Agent,
-    type DeveloperAgentResponse as DeveloperAgentResponse,
-    type AgentListResponse as AgentListResponse,
-    type AgentDeleteResponse as AgentDeleteResponse,
-    type AgentCreateParams as AgentCreateParams,
-    type AgentListParams as AgentListParams,
-  };
+  export { Agent as Agent };
 
-  export { Auth as Auth, type AuthVerifyResponse as AuthVerifyResponse };
+  export { Auth as Auth };
 
-  export {
-    Avatar as Avatar,
-    type AvatarListResponse as AvatarListResponse,
-    type AvatarListParams as AvatarListParams,
-  };
+  export { Avatar as Avatar };
 
-  export {
-    Calls as Calls,
-    type CallListResponse as CallListResponse,
-    type CallListMessagesResponse as CallListMessagesResponse,
-    type CallListParams as CallListParams,
-  };
+  export { Calls as Calls, type CallListResponse as CallListResponse, type CallListParams as CallListParams };
 
-  export {
-    SessionResource as SessionResource,
-    type Session as Session,
-    type SessionListResponse as SessionListResponse,
-    type SessionCreateParams as SessionCreateParams,
-  };
+  export { Session as Session };
 }
