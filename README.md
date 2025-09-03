@@ -26,13 +26,7 @@ const client = new BeyondPresence({
   apiKey: process.env['BEY_API_KEY'], // This is the default and can be omitted
 });
 
-const session = await client.session.create({
-  avatar_id: '01234567-89ab-cdef-0123-456789abcdef',
-  livekit_token: '<your-livekit-token>',
-  livekit_url: 'wss://<your-domain>.livekit.cloud',
-});
-
-console.log(session.id);
+await client.auth.verify();
 ```
 
 ### Request & Response types
@@ -47,7 +41,7 @@ const client = new BeyondPresence({
   apiKey: process.env['BEY_API_KEY'], // This is the default and can be omitted
 });
 
-const agents: BeyondPresence.AgentListResponse = await client.agent.list();
+await client.auth.verify();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -60,7 +54,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const agents = await client.agent.list().catch(async (err) => {
+const response = await client.auth.verify().catch(async (err) => {
   if (err instanceof BeyondPresence.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -100,7 +94,7 @@ const client = new BeyondPresence({
 });
 
 // Or, configure per-request:
-await client.agent.list({
+await client.auth.verify({
   maxRetries: 5,
 });
 ```
@@ -117,7 +111,7 @@ const client = new BeyondPresence({
 });
 
 // Override per-request:
-await client.agent.list({
+await client.auth.verify({
   timeout: 5 * 1000,
 });
 ```
@@ -140,13 +134,13 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new BeyondPresence();
 
-const response = await client.agent.list().asResponse();
+const response = await client.auth.verify().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: agents, response: raw } = await client.agent.list().withResponse();
+const { data: result, response: raw } = await client.auth.verify().withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(agents);
+console.log(result);
 ```
 
 ### Logging
@@ -226,7 +220,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.session.create({
+client.auth.verify({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
