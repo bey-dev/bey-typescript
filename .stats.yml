@@ -1,4 +1,4 @@
 configured_endpoints: 2
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/beyond-presence%2Fbey-cc9a40bebaf34ddd7fb2d3be2ffe4d22e585fd0069ae3eadb83f4e42b6c2e60c.yml
-openapi_spec_hash: 8290f6ebd24b3aacffc238816a32b2ef
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/beyond-presence%2Fbey-0e2be87f6f1af0f7ff2b4f9f4d43892dabc6e2ad7dd8250e65694884d0d8064c.yml
+openapi_spec_hash: fdb404c4df40895757ab1f3e209e1a9c
 config_hash: ae07c7bf5d955fe3407dcd9a2c0b7775

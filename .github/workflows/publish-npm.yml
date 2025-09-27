@@ -16,6 +16,8 @@ jobs:
   publish:
     name: publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -41,4 +43,8 @@ jobs:
           NPM_TOKEN: ${{ secrets.BEYOND_PRESENCE_NPM_TOKEN || secrets.NPM_TOKEN }}
 
       - name: Upload MCP Server DXT GitHub release asset
-        run: gh release upload packages/mcp-server/bey_dev_sdk_api.dxt
+        run: |
+          gh release upload ${{ github.event.release.tag_name }} \
+            packages/mcp-server/bey_dev_sdk_api.mcpb
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

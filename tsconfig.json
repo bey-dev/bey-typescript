@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "@bey-dev/sdk/*": ["src/*"],
-      "@bey-dev/sdk": ["src/index.ts"]
+      "@bey-dev/sdk/*": ["./src/*"],
+      "@bey-dev/sdk": ["./src/index.ts"]
     },
     "noEmit": true,
 

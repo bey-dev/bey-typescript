@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "@bey-dev/sdk/*": ["dist/src/*"],
-      "@bey-dev/sdk": ["dist/src/index.ts"]
+      "@bey-dev/sdk/*": ["./dist/src/*"],
+      "@bey-dev/sdk": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
