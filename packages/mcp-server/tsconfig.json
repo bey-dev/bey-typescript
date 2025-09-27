@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "bey-mcp/*": ["src/*"],
-      "bey-mcp": ["src/index.ts"]
+      "bey-mcp/*": ["./src/*"],
+      "bey-mcp": ["./src/index.ts"]
     },
     "noEmit": true,
 
