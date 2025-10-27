@@ -49,7 +49,7 @@ export namespace CallListResponse {
       id: string;
 
       /**
-       * ID of managing agent.
+       * ID of agent managing the call.
        */
       agent_id: string;
 
@@ -62,6 +62,11 @@ export namespace CallListResponse {
        * Start time in ISO 8601 format.
        */
       started_at: string;
+
+      /**
+       * Tags for the call
+       */
+      tags?: { [key: string]: string };
     }
   }
 
@@ -88,7 +93,7 @@ export namespace CallListResponse {
       id: string;
 
       /**
-       * ID of managing agent.
+       * ID of agent managing the call.
        */
       agent_id: string;
 
@@ -101,6 +106,11 @@ export namespace CallListResponse {
        * Start time in ISO 8601 format.
        */
       started_at: string;
+
+      /**
+       * Tags for the call
+       */
+      tags?: { [key: string]: string };
     }
   }
 }
