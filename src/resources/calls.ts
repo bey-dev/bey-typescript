@@ -54,19 +54,52 @@ export namespace CallListResponse {
       agent_id: string;
 
       /**
-       * End time in ISO 8601 format. If null, call might still be ongoing.
+       * Status for call that has not yet started.
        */
-      ended_at: string | null;
-
-      /**
-       * Start time in ISO 8601 format.
-       */
-      started_at: string;
+      status: Data.ToStartCallStatus | Data.OngoingCallStatus | Data.CompletedCallStatus;
 
       /**
        * Tags for the call
        */
       tags?: { [key: string]: string };
+    }
+
+    export namespace Data {
+      /**
+       * Status for call that has not yet started.
+       */
+      export interface ToStartCallStatus {
+        type?: 'to_start';
+      }
+
+      /**
+       * Status for call that is currently ongoing.
+       */
+      export interface OngoingCallStatus {
+        /**
+         * Start time in ISO 8601 format.
+         */
+        started_at: string;
+
+        type?: 'ongoing';
+      }
+
+      /**
+       * Status for call that has completed.
+       */
+      export interface CompletedCallStatus {
+        /**
+         * End time in ISO 8601 format.
+         */
+        ended_at: string;
+
+        /**
+         * Start time in ISO 8601 format.
+         */
+        started_at: string;
+
+        type?: 'completed';
+      }
     }
   }
 
@@ -98,19 +131,52 @@ export namespace CallListResponse {
       agent_id: string;
 
       /**
-       * End time in ISO 8601 format. If null, call might still be ongoing.
+       * Status for call that has not yet started.
        */
-      ended_at: string | null;
-
-      /**
-       * Start time in ISO 8601 format.
-       */
-      started_at: string;
+      status: Data.ToStartCallStatus | Data.OngoingCallStatus | Data.CompletedCallStatus;
 
       /**
        * Tags for the call
        */
       tags?: { [key: string]: string };
+    }
+
+    export namespace Data {
+      /**
+       * Status for call that has not yet started.
+       */
+      export interface ToStartCallStatus {
+        type?: 'to_start';
+      }
+
+      /**
+       * Status for call that is currently ongoing.
+       */
+      export interface OngoingCallStatus {
+        /**
+         * Start time in ISO 8601 format.
+         */
+        started_at: string;
+
+        type?: 'ongoing';
+      }
+
+      /**
+       * Status for call that has completed.
+       */
+      export interface CompletedCallStatus {
+        /**
+         * End time in ISO 8601 format.
+         */
+        ended_at: string;
+
+        /**
+         * Start time in ISO 8601 format.
+         */
+        started_at: string;
+
+        type?: 'completed';
+      }
     }
   }
 }
