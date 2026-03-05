@@ -112,7 +112,7 @@ export namespace CallListResponse {
     /**
      * Whether there are more objects to fetch.
      */
-    has_more?: boolean;
+    has_more?: false;
   }
 
   export namespace NoMorePageCallResponse {
