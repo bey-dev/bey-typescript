@@ -2,4 +2,6 @@
 
 import { APIResource } from '../core/resource';
 
-export class Avatar extends APIResource {}
+export class Avatar extends APIResource {
+
+}

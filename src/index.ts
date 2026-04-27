@@ -5,18 +5,4 @@ export { BeyondPresence as default } from './client';
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './core/api-promise';
 export { BeyondPresence, type ClientOptions } from './client';
-export {
-  BeyondPresenceError,
-  APIError,
-  APIConnectionError,
-  APIConnectionTimeoutError,
-  APIUserAbortError,
-  NotFoundError,
-  ConflictError,
-  RateLimitError,
-  BadRequestError,
-  AuthenticationError,
-  InternalServerError,
-  PermissionDeniedError,
-  UnprocessableEntityError,
-} from './core/error';
+export { BeyondPresenceError, APIError, APIConnectionError, APIConnectionTimeoutError, APIUserAbortError, NotFoundError, ConflictError, RateLimitError, BadRequestError, AuthenticationError, InternalServerError, PermissionDeniedError, UnprocessableEntityError } from './core/error';
