@@ -8,17 +8,12 @@ export class Calls extends APIResource {
   /**
    * List calls managed by your agents.
    */
-  list(
-    query: CallListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<CallListResponse> {
+  list(query: CallListParams | null | undefined = {}, options?: RequestOptions): APIPromise<CallListResponse> {
     return this._client.get('/v1/calls', { query, ...options });
   }
 }
 
-export type CallListResponse =
-  | CallListResponse.HasMorePageCallResponse
-  | CallListResponse.NoMorePageCallResponse;
+export type CallListResponse = CallListResponse.HasMorePageCallResponse | CallListResponse.NoMorePageCallResponse
 
 export namespace CallListResponse {
   export interface HasMorePageCallResponse {
@@ -194,5 +189,8 @@ export interface CallListParams {
 }
 
 export declare namespace Calls {
-  export { type CallListResponse as CallListResponse, type CallListParams as CallListParams };
+  export {
+    type CallListResponse as CallListResponse,
+    type CallListParams as CallListParams
+  };
 }

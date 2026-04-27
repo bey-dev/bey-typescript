@@ -2,4 +2,6 @@
 
 import { APIResource } from '../core/resource';
 
-export class Agent extends APIResource {}
+export class Agent extends APIResource {
+
+}

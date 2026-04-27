@@ -10,9 +10,6 @@ export class Auth extends APIResource {
    * Verify authentication with API key.
    */
   verify(options?: RequestOptions): APIPromise<void> {
-    return this._client.get('/v1/auth/verify', {
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.get('/v1/auth/verify', { ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
