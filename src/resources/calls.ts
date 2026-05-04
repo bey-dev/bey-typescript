@@ -62,6 +62,16 @@ export namespace CallListResponse {
        * Tags for the call
        */
       tags?: { [key: string]: string };
+
+      /**
+       * Email of the user.
+       */
+      user_email?: string | null;
+
+      /**
+       * Name of the user.
+       */
+      user_name?: string | null;
     }
 
     export namespace Data {
@@ -139,6 +149,16 @@ export namespace CallListResponse {
        * Tags for the call
        */
       tags?: { [key: string]: string };
+
+      /**
+       * Email of the user.
+       */
+      user_email?: string | null;
+
+      /**
+       * Name of the user.
+       */
+      user_name?: string | null;
     }
 
     export namespace Data {
