@@ -1,6 +1,6 @@
 {
   "name": "bey-mcp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "The official MCP Server for the Beyond Presence API",
   "author": "Beyond Presence <support@beyondpresence.ai>",
   "types": "dist/index.d.ts",
