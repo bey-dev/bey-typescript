@@ -7,6 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 export class Calls extends APIResource {
   /**
    * List calls managed by your agents.
+   *
+   * Returns a cursor-paginated list of calls across all of your agents, most recent
+   * first.
    */
   list(
     query: CallListParams | null | undefined = {},

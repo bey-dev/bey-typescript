@@ -7,7 +7,9 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Auth extends APIResource {
   /**
-   * Verify authentication with API key.
+   * Check whether the `x-api-key` header contains a valid API key. Returns
+   * `204 No Content` when the key is valid and `401 Unauthorized` otherwise. Useful
+   * as a lightweight connectivity and credential check.
    */
   verify(options?: RequestOptions): APIPromise<void> {
     return this._client.get('/v1/auth/verify', {
