@@ -55,11 +55,12 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     endpoint: '/v1/auth/verify',
     httpMethod: 'get',
     summary: 'Verify API Key',
-    description: 'Verify authentication with API key.',
+    description:
+      'Check whether the `x-api-key` header contains a valid API key. Returns `204 No Content` when the key is valid and `401 Unauthorized` otherwise. Useful as a lightweight connectivity and credential check.',
     stainlessPath: '(resource) auth > (method) verify',
     qualified: 'client.auth.verify',
     markdown:
-      "## verify\n\n`client.auth.verify(): void`\n\n**get** `/v1/auth/verify`\n\nVerify authentication with API key.\n\n### Example\n\n```typescript\nimport BeyondPresence from '@bey-dev/sdk';\n\nconst client = new BeyondPresence();\n\nawait client.auth.verify()\n```",
+      "## verify\n\n`client.auth.verify(): void`\n\n**get** `/v1/auth/verify`\n\nCheck whether the `x-api-key` header contains a valid API key. Returns `204 No Content` when the key is valid and `401 Unauthorized` otherwise. Useful as a lightweight connectivity and credential check.\n\n### Example\n\n```typescript\nimport BeyondPresence from '@bey-dev/sdk';\n\nconst client = new BeyondPresence();\n\nawait client.auth.verify()\n```",
     perLanguage: {
       typescript: {
         method: 'client.auth.verify',
@@ -81,14 +82,15 @@ const EMBEDDED_METHODS: MethodEntry[] = [
     endpoint: '/v1/calls',
     httpMethod: 'get',
     summary: 'List Calls',
-    description: 'List calls managed by your agents.',
+    description:
+      'List calls managed by your agents.\n\nReturns a cursor-paginated list of calls across all of your agents, most\nrecent first.',
     stainlessPath: '(resource) calls > (method) list',
     qualified: 'client.calls.list',
     params: ['cursor?: string;', 'limit?: number;'],
     response:
       "{ data: { id: string; agent_id: string; status: { type?: 'to_start'; } | { started_at: string; type?: 'ongoing'; } | { ended_at: string; started_at: string; type?: 'completed'; }; tags?: object; user_email?: string; user_name?: string; }[]; next_cursor: string; has_more?: true; } | { data: { id: string; agent_id: string; status: { type?: 'to_start'; } | { started_at: string; type?: 'ongoing'; } | { ended_at: string; started_at: string; type?: 'completed'; }; tags?: object; user_email?: string; user_name?: string; }[]; has_more?: false; }",
     markdown:
-      "## list\n\n`client.calls.list(cursor?: string, limit?: number): { data: object[]; next_cursor: string; has_more?: true; } | { data: object[]; has_more?: false; }`\n\n**get** `/v1/calls`\n\nList calls managed by your agents.\n\n### Parameters\n\n- `cursor?: string`\n  Cursor for pagination.\n\n- `limit?: number`\n  Maximum number of objects to return.\n\n### Returns\n\n- `{ data: { id: string; agent_id: string; status: { type?: 'to_start'; } | { started_at: string; type?: 'ongoing'; } | { ended_at: string; started_at: string; type?: 'completed'; }; tags?: object; user_email?: string; user_name?: string; }[]; next_cursor: string; has_more?: true; } | { data: { id: string; agent_id: string; status: { type?: 'to_start'; } | { started_at: string; type?: 'ongoing'; } | { ended_at: string; started_at: string; type?: 'completed'; }; tags?: object; user_email?: string; user_name?: string; }[]; has_more?: false; }`\n\n### Example\n\n```typescript\nimport BeyondPresence from '@bey-dev/sdk';\n\nconst client = new BeyondPresence();\n\nconst calls = await client.calls.list();\n\nconsole.log(calls);\n```",
+      "## list\n\n`client.calls.list(cursor?: string, limit?: number): { data: object[]; next_cursor: string; has_more?: true; } | { data: object[]; has_more?: false; }`\n\n**get** `/v1/calls`\n\nList calls managed by your agents.\n\nReturns a cursor-paginated list of calls across all of your agents, most\nrecent first.\n\n### Parameters\n\n- `cursor?: string`\n  Cursor for pagination.\n\n- `limit?: number`\n  Maximum number of objects to return.\n\n### Returns\n\n- `{ data: { id: string; agent_id: string; status: { type?: 'to_start'; } | { started_at: string; type?: 'ongoing'; } | { ended_at: string; started_at: string; type?: 'completed'; }; tags?: object; user_email?: string; user_name?: string; }[]; next_cursor: string; has_more?: true; } | { data: { id: string; agent_id: string; status: { type?: 'to_start'; } | { started_at: string; type?: 'ongoing'; } | { ended_at: string; started_at: string; type?: 'completed'; }; tags?: object; user_email?: string; user_name?: string; }[]; has_more?: false; }`\n\n### Example\n\n```typescript\nimport BeyondPresence from '@bey-dev/sdk';\n\nconst client = new BeyondPresence();\n\nconst calls = await client.calls.list();\n\nconsole.log(calls);\n```",
     perLanguage: {
       typescript: {
         method: 'client.calls.list',
