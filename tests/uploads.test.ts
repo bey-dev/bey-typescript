@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from '@bey-dev/sdk/internal/to-file';
 import { toFile } from '@bey-dev/sdk/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
